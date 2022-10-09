@@ -11,14 +11,21 @@ public class TowerLifeCycle : MonoBehaviour
 
   public static TowerLifeCycle SelfInstance = null;
 
+  const float STARTING_LIFE = 100f;
+
   private List<GameObject> _towerParts = new List<GameObject>();
 
-  private float _towerLife = 100f;
+  /// <summary>
+  /// Describes the life of the tower in percentage (that goes from 0 to 100).
+  /// When this value it's changed the tower will be animated depending on the 
+  /// </summary>
   public float TowerLife
   {
     get { return _towerLife; }
-    set { if (value <= 100f && value >= 0f) { _towerLife = value; UpdateTowerState(); } } // sets the life and updates the tower state
+    set { if (value <= 100f && value >= 0f) { UpdateTowerState(value); } } // sets the life and updates the tower state
   }
+  private float _currentTowerLife = 100f; // this value it's the actual life of the tower
+  private float _towerLife = 100f; // this value holds a temporary changing life, it's used for animation purposes
 
   private void Start()
   {
@@ -35,7 +42,6 @@ public class TowerLifeCycle : MonoBehaviour
     Transform towerModules = SelfInstance.transform.Find("Modules");
     foreach (Transform children in towerModules)
     {
-      Debug.Log($"Added: {children.name}");
       _towerParts.Add(children.gameObject);
     }
   }
@@ -43,9 +49,10 @@ public class TowerLifeCycle : MonoBehaviour
   /// <summary>
   /// Updates the structure ingame of the tower
   /// </summary>
-  private void UpdateTowerState()
+  private void UpdateTowerState(float newTowerLife = STARTING_LIFE)
   {
-    Debug.Log($"Updating structure life ({_towerLife})");
+    // TODO: take the newTowerLife and _currentTowerLife make an animation with them
+    _towerLife = newTowerLife;
     float lifePerModule = 100f / _towerParts.Count;
     bool selectedTower = false;
     int i = 0;
