@@ -29,12 +29,14 @@ public class TowerLifeCycle : MonoBehaviour
   }
   private float _towerLife = 100f; // this value holds a temporary changing life, it's used for animation purposes
 
-  private void Awake() { _testingAnimationTimer = DateTime.Now; }
+  private void Awake() { 
+    if (SelfInstance == null) { SelfInstance = this; }
+    _testingAnimationTimer = DateTime.Now;
+    LoadTowerStates();
+  }
 
   private void Start()
   {
-    if (SelfInstance == null) { SelfInstance = this; }
-    LoadTowerStates();
     UpdateTowerState();
   }
 
@@ -57,14 +59,15 @@ public class TowerLifeCycle : MonoBehaviour
   {
     // this takes the first lower closest TowerState depending on the current life
     // TODO: take the newTowerLife and _currentTowerLife make an animation with them
+    Debug.Log($"{gameObject.name}'s Life: {_towerLife}");
     _towerLife = newTowerLife;
-    float lifePerModule = 100f / _towerStates.Count;
+    float lifePerState = 100f / _towerStates.Count;
     bool selectedTower = false;
     int i = 0;
     foreach (GameObject module in _towerStates)
     {
-      float moduleLife = lifePerModule*i;
-      if (moduleLife > (_towerLife-lifePerModule) && !selectedTower)
+      float stateLife = lifePerState*i;
+      if (stateLife > (_towerLife-lifePerState) && !selectedTower)
       {
         module.SetActive(true);
         selectedTower = true;
@@ -84,26 +87,26 @@ public class TowerLifeCycle : MonoBehaviour
   public void TestTowerEffects(int Delay, float LifeStep)
   {
     int timePassed = (DateTime.Now - _testingAnimationTimer).Seconds;
-    if (timePassed < Delay) {return;}
+    if (timePassed <= Delay) {return;}
     _testingAnimationTimer = DateTime.Now;
 
     if (_testingIsBeingDestroy && (_towerLife - LifeStep) >= 0)
     {
-      _towerLife -= LifeStep;
+      UpdateTowerState(_towerLife - LifeStep);
     }
     else if (!_testingIsBeingDestroy && _towerLife <= 100f)
     {
-      _towerLife += LifeStep;
+      UpdateTowerState(_towerLife + LifeStep);
     }
     else if (_testingIsBeingDestroy && (_towerLife - LifeStep) < 0) 
     {
       _testingIsBeingDestroy = !_testingIsBeingDestroy; 
-      _towerLife = 0;
+      UpdateTowerState(0);
     }
     else if (!_testingIsBeingDestroy && (_towerLife + LifeStep) > 100f) 
     {
       _testingIsBeingDestroy = !_testingIsBeingDestroy; 
-      _towerLife = 100;
+      UpdateTowerState(100);
     }
 
   }
