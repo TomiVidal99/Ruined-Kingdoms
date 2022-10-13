@@ -17,12 +17,12 @@ public class Card
   /// <summary>
   /// Describes the behaviour of a card.
   /// </summary>
-  public Card(GameObject cardReference, string name, CardCost cost, CardEffect effect)
+  public Card(GameObject cardReference, string name)
   {
     this._card = cardReference;
     this._name = name;
-    this._cost = cost;
-    this._effect = effect;
+    // this._cost = cost;
+    // this._effect = effect;
 
     UpdateCardData();
   }
@@ -33,6 +33,11 @@ public class Card
   private void UpdateCardData()
   {
     _card.GetComponentInChildren<TMP_Text>().text = _name;
+  }
+
+  public void UpdatePosition(Vector3 newPosition)
+  {
+    _card.transform.position = newPosition;
   }
 
 }

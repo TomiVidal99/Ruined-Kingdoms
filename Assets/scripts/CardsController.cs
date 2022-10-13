@@ -32,6 +32,30 @@ public class CardsController : MonoBehaviour
       CardDataEffect effect = data.effect;
       string[] target = data.target;
 
+      _divineCards.Add(
+          new Card(
+            Instantiate(_cardPrefab),
+            name
+          )
+      );
+      _divineCards[0].UpdatePosition(new Vector3(-421.696f, 0.525f, 1.07f));
+
+      _divineCards.Add(
+          new Card(
+            Instantiate(_cardPrefab),
+            name
+          )
+      );
+      _divineCards[1].UpdatePosition(new Vector3(-421.696f, 0.525f, 1.47f));
+
+      _divineCards.Add(
+          new Card(
+            Instantiate(_cardPrefab),
+            name
+          )
+      );
+      _divineCards[2].UpdatePosition(new Vector3(-421.696f, 0.525f, 1.97f));
+
       Debug.Log($"Card: {name}, {cost}, {effect.magnitude}, {effect.resources}, {target[0]}");
     }
   }
