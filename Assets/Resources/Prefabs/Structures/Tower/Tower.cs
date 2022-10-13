@@ -10,6 +10,7 @@ public class Tower
     set { UpdateLife(value); }
   }
 
+  private float _lifePerState = 0;
   private string _name = ""; // this name should be the same as the GameObject inside Unity
   private List<GameObject> _states = new List<GameObject>(); // these are references to all the states of the tower
 
@@ -18,11 +19,12 @@ public class Tower
   [SerializeField] private AudioClip[] _destroyAudioClips = new AudioClip[1];
 
   // Constructor
-  public Tower(float intialLife, string name, GameObject[] states, AudioSource soundSource)
+  public Tower(float initialLife, string name, GameObject[] states, AudioSource soundSource)
   {
-    this._life = intialLife;
+    this._life = initialLife;
     this._name = name;
     this._soundSource = soundSource;
+    this._lifePerState = 100f / states.Length;
 
     foreach (GameObject state in states)
     {
@@ -36,38 +38,48 @@ public class Tower
   /// </summary>
   private void UpdateLife(float newLife)
   {
-    if (newLife > 100f || newLife < 0)
+    Debug.Log($"Updating Life: {newLife}");
+    float life = newLife;
+
+    // checks if the given life it's a valid parameter
+    if (newLife > 100f) 
     {
-      // checks if the given life it's a valid parameter
-      Debug.LogError($"The life given to the Tower '{_name}' it's not valid");
-      return;
+      Debug.LogError($"The life given to the Tower '{_name}' it's not valid. Defaulting to 100%");
+      life = 100f;
+    }
+    else if (newLife < 0)
+    {
+      Debug.LogError($"The life given to the Tower '{_name}' it's not valid. Defaulting to 0%");
+      life = 0;
     }
 
-    // this takes the first lower closest TowerState depending on the current life
-    Debug.Log($"{_name}'s Life: {_life}");
-    float oldTowerLife = _life;
-    float lifePerState = 100f / _states.Count;
-    bool selectedTower = false;
-    bool hasChangedStateFlag = false;
+    GameObject[] states = _states.ToArray();
+    bool selectedStateFlag = false;
+
     int i = 0;
-    foreach (GameObject state in _states.ToArray())
+    // iteration of the different states of the tower
+    foreach (GameObject state in states)
     {
-      Debug.Log($"state {state.ToString()}");
-      float stateLife = lifePerState*i;
-      if (stateLife > (_life) && !selectedTower)
+      float currentStateLife = i*_lifePerState;
+
+      // i pick the first state that it's bigger than the new life
+      // IMPORTANT: this is dependent of the order of the list. If that changes 
+      // this algorithm may change
+
+      if ( (life - _lifePerState) <= currentStateLife && !selectedStateFlag || life >= (100f - _lifePerState))
       {
-        if (!state.activeSelf) { hasChangedStateFlag = true; }
         state.SetActive(true);
-        Debug.Log($"{state.name}");
-        selectedTower = true;
+        selectedStateFlag = true;
       }
-      else if (state.activeSelf)
+      else
       {
         state.SetActive(false);
       }
+
       i++;
     }
-    if (hasChangedStateFlag && _life != newLife) { ApplySoud(newLife < oldTowerLife); }
+
+    this._life = life;
   }
 
   /// <summary>
