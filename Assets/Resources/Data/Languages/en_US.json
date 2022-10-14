@@ -1,0 +1,17 @@
+{
+  "Lang": "en_US",
+  "Menu": [
+    {
+      "key": "PlayGameButton",
+      "value": "Play Game"
+    },
+    {
+      "key": "SettingsButton",
+      "value": "Settings"
+    },
+    {
+      "key": "QuitGameButton",
+      "value": "Quit"
+    }
+  ]
+}

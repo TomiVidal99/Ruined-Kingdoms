@@ -167,6 +167,7 @@ GameObject:
   - component: {fileID: 205837208}
   - component: {fileID: 205837207}
   - component: {fileID: 205837209}
+  - component: {fileID: 205837210}
   m_Layer: 0
   m_Name: Main
   m_TagString: Untagged
@@ -220,6 +221,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _divineCardsJSON: {fileID: 4900000, guid: 967d3dba3c8195444a65452e02421db5, type: 3}
   _cardPrefab: {fileID: 5618689571245111788, guid: 6fc1cca64295e4448b37db5689f59690, type: 3}
+--- !u!114 &205837210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205837206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3133bd26e7171dd4d9db747d587952f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &316692633
 GameObject:
   m_ObjectHideFlags: 0
