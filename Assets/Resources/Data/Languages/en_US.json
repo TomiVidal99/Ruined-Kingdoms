@@ -2,8 +2,12 @@
   "Lang": "en_US",
   "Menu": [
     {
-      "key": "PlayGameButton",
-      "value": "Play Game"
+      "key": "JoinGameButton",
+      "value": "Join Game"
+    },
+    {
+      "key": "CreateLobbyButton",
+      "value": "Create Lobby"
     },
     {
       "key": "SettingsButton",
