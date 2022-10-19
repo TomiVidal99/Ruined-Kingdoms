@@ -54,6 +54,7 @@ public class Card
     {
         // Debug.Log($"{_card.name}: {path}");
         Texture2D image = Resources.Load<Texture2D>(path);
+        if (image == null) { image = Resources.Load<Texture2D>("Prefabs/Card/Background/default_background"); }
         _card.transform.GetChild(0).GetComponentInChildren<RawImage>().texture = image;
     }
 

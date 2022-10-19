@@ -7,22 +7,22 @@ using UnityEngine;
 public class BasicTypes : MonoBehaviour
 {
 
-  public static List<string> CardQualities = new List<string>()
+  public static readonly List<string> CARD_QUALITIES = new List<string>()
   {
     "COMMONER", "NOBLE", "MONARCH", "DIVINE"
   };
 
-  public static List<string> CardActions = new List<string>()
+  public static readonly List<string> CARD_ACTIONS = new List<string>()
   {
-    "ATTACK", "CONSTRUCT", "MAGIC"
+    "ATTACK", "BUILD", "MAGIC"
   };
 
-  public static List<string> CardResources = new List<string>()
+  public static readonly List<string> CARD_RESOURCES = new List<string>()
   {
     "SPADES", "CRYSTALS", "BRICKS"
   };
 
-  public static List<string> TargetEntities = new List<string>()
+  public static readonly List<string> TARGET_ENTITIES = new List<string>()
   {
     "TOWER", "FENCE", "RESOURCES"
   };

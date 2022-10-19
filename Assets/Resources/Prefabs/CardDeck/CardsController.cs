@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -46,6 +48,23 @@ public class CardsController : MonoBehaviour
     private void Start()
     {
         FillEmptyCards();
+    }
+
+    // TODO: remove this, just for testing
+    private DateTime _timer;
+    private void Update()
+    {
+        int timeDiff = (DateTime.Now - _timer).Seconds;
+        if (timeDiff >= 4)
+        {
+            _timer = DateTime.Now;
+            Debug.Log($"Checking for empty places");
+            CardPlaceholder[] emptyPlaceholders = GetEmptyPlaceholders();
+            if (emptyPlaceholders.Length > 0)
+            {
+                FillEmptyCards();
+            }
+        }
     }
 
     /// <summary>
@@ -102,15 +121,23 @@ public class CardsController : MonoBehaviour
     /// </summary>
     private void LoadCardsFromJSON()
     {
-        CardDataActions divine = JsonUtility.FromJson<CardDataActions>(_divineCardsJSON.text);
-        CardDataActions monarch = JsonUtility.FromJson<CardDataActions>(_monarchCardsJSON.text);
-        CardDataActions noble = JsonUtility.FromJson<CardDataActions>(_nobleCardsJSON.text);
-        CardDataActions commoner = JsonUtility.FromJson<CardDataActions>(_commonerCardsJSON.text);
+        CardData[] divine = JsonUtility.FromJson<CardDataJSON>(_divineCardsJSON.text).data;
+        CardData[] monarch = JsonUtility.FromJson<CardDataJSON>(_monarchCardsJSON.text).data;
+        CardData[] noble = JsonUtility.FromJson<CardDataJSON>(_nobleCardsJSON.text).data;
+        CardData[] commoner = JsonUtility.FromJson<CardDataJSON>(_commonerCardsJSON.text).data;
 
-        _divineCards.InsertRange(0, divine.attack);
-        _monarchCards.InsertRange(0, monarch.attack);
-        _nobleCards.InsertRange(0, noble.attack);
-        _commonerCards.InsertRange(0, commoner.attack);
+        _divineCards.InsertRange(0, divine);
+        _monarchCards.InsertRange(0, monarch);
+        _nobleCards.InsertRange(0, noble);
+        _commonerCards.InsertRange(0, commoner);
+    }
+
+    private void LogCards(CardData[] cards)
+    {
+        foreach (CardData card in cards)
+        {
+            Debug.Log($"{card.name}");
+        }
     }
 
     /// <summary>
@@ -118,12 +145,12 @@ public class CardsController : MonoBehaviour
     /// </summary>
     private Card CreateRandomCard(List<CardData> dataList, CardPlaceholder placeholder)
     {
-        int randomCard = Mathf.CeilToInt(Random.Range(0, dataList.Count - 1));
+        int randomCard = Mathf.FloorToInt(UnityEngine.Random.Range(0, dataList.Count));
         CardData cardData = dataList[randomCard];
         string backgroundImagePath = _BACKGROUND_IMAGES_PATH + cardData.name;
         GameObject cardObject = Instantiate(_cardPrefab);
         cardObject.AddComponent<CardClickEvents>();
-        cardObject.GetComponent<CardClickEvents>().UpdateData(cardData);
+        cardObject.GetComponent<CardClickEvents>().UpdateData(cardData, placeholder.index);
         Card card = new Card(cardObject, cardData, backgroundImagePath);
         card.UpdatePosition(placeholder.position + new Vector3(0, 0.2f, 0));
         card.UpdateRotation(placeholder.rotation);
@@ -138,7 +165,7 @@ public class CardsController : MonoBehaviour
         CardPlaceholder[] emptyPlaceholders = GetEmptyPlaceholders();
         foreach (CardPlaceholder placeholder in emptyPlaceholders)
         {
-            int cardType = Mathf.CeilToInt(Random.Range(0, 3));
+            int cardType = Mathf.FloorToInt(UnityEngine.Random.Range(0, 4));
             switch (cardType)
             {
                 case 3:
@@ -157,7 +184,7 @@ public class CardsController : MonoBehaviour
                     Debug.LogError($"The cardType {cardType} does not exist");
                     break;
             }
-
+            _cardsPlaceholders[placeholder.index].hasCard = true;
         }
     }
 

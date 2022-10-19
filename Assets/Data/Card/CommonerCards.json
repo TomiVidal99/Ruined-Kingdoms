@@ -1,15 +1,27 @@
 {
-  "attack": [
-
+  "data": [
     {
       "name": "commoner",
-      "cost": 28,
-      "effect": { 
-        "magnitude": 40,
-        "resources": "SPADES"
+      "action": "ATTACK",
+      "cost": {
+        "magnitude": [
+          2
+        ],
+        "resources": [
+          "SPADES"
+        ]
       },
-      "target": [ "TOWER" ]
+      "effect": {
+        "magnitude": [
+          4
+        ],
+        "resources": [
+          "SPADES"
+        ]
+      },
+      "target": [
+        "TOWER"
+      ]
     }
-
   ]
 }

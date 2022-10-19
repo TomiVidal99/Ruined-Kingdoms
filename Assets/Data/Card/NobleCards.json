@@ -1,15 +1,27 @@
 {
-  "attack": [
-
+  "data": [
     {
       "name": "noble",
-      "cost": 28,
-      "effect": { 
-        "magnitude": 40,
-        "resources": "SPADES"
+      "action": "ATTACK",
+      "cost": {
+        "magnitude": [
+          9
+        ],
+        "resources": [
+          "SPADES"
+        ]
       },
-      "target": [ "TOWER" ]
+      "effect": {
+        "magnitude": [
+          8
+        ],
+        "resources": [
+          "SPADES"
+        ]
+      },
+      "target": [
+        "TOWER"
+      ]
     }
-
   ]
 }
