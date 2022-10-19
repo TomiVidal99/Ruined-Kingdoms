@@ -38,20 +38,11 @@ public class Tower
   /// </summary>
   private void UpdateLife(float newLife)
   {
-    Debug.Log($"Updating Life: {newLife}");
     float life = newLife;
-
     // checks if the given life it's a valid parameter
-    if (newLife > 100f) 
-    {
-      Debug.LogError($"The life given to the Tower '{_name}' it's not valid. Defaulting to 100%");
-      life = 100f;
-    }
-    else if (newLife < 0)
-    {
-      Debug.LogError($"The life given to the Tower '{_name}' it's not valid. Defaulting to 0%");
-      life = 0;
-    }
+    if (newLife > 100f) { life = 100f; }
+    else if (newLife < 0) { life = 0; }
+    Debug.Log($"Updating Life: {life}");
 
     GameObject[] states = _states.ToArray();
     bool selectedStateFlag = false;
