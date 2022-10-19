@@ -72,8 +72,9 @@ public class CardClickEvents : MonoBehaviour
         StringBuilder stats = new StringBuilder();
         stats.AppendLine($"Name: {_data.name}");
         stats.AppendLine($"Index: {_index}");
-        stats.AppendLine($"Cost: {_data.cost.magnitude} of {_data.cost.resources}");
-        stats.AppendLine($"Effect: {_data.effect.magnitude} of {_data.effect.resources}");
+        stats.AppendLine($"Cost: {_data.cost.magnitude[0]} of {_data.cost.resources[0]}");
+        stats.AppendLine($"Effect: {_data.effect.magnitude[0]} of {_data.effect.resources[0]}");
+
         stats.AppendLine($"Targets: ");
         foreach (string target in _data.target)
         {
