@@ -2,7 +2,8 @@
 public class CardData
 {
   public string name;
-  public int cost;
+  public string action;
+  public CardDataEffect cost;
   public CardDataEffect effect;
   public string[] target;
 }

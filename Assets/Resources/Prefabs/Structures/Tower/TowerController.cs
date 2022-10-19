@@ -57,17 +57,17 @@ public class TowerController : MonoBehaviour
   /// <summary>
   /// Testing function to see if the animations are working
   /// </summary>
-  public void HandleAttackTower1()
+  public void HandleAttackTower1(float life = 5f)
   {
-    _towers[0].Life -= 5;
+    _towers[0].Life -= life;
   }
 
   /// <summary>
   /// Testing function to see if the animations are working
   /// </summary>
-  public void HandleBuildTower1()
+  public void HandleBuildTower1(float life = 5f)
   {
-    _towers[0].Life += 5;
+    _towers[0].Life += life;
   }
 
 }

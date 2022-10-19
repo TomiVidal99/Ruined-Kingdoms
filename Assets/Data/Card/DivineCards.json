@@ -1,15 +1,50 @@
 {
-  "attack": [
-
+  "data": [
     {
       "name": "death",
-      "cost": 28,
-      "effect": { 
-        "magnitude": 40,
-        "resources": "SPADES"
+      "action": "ATTACK",
+      "cost": {
+        "magnitude": [
+          28
+        ],
+        "resources": [
+          "SPADES"
+        ]
       },
-      "target": [ "TOWER" ]
+      "effect": {
+        "magnitude": [
+          20
+        ],
+        "resources": [
+          "SPADES"
+        ]
+      },
+      "target": [
+        "TOWER"
+      ]
+    },
+    {
+      "name": "pixies",
+      "action": "BUILD",
+      "cost": {
+        "magnitude": [
+          30
+        ],
+        "resources": [
+          "BRICKS"
+        ]
+      },
+      "effect": {
+        "magnitude": [
+          40
+        ],
+        "resources": [
+          "SPADES"
+        ]
+      },
+      "target": [
+        "TOWER"
+      ]
     }
-
   ]
 }

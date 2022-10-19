@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - cardtest1
   layers:
   - Default
   - TransparentFX
@@ -14,9 +15,9 @@ TagManager:
   - 
   - 
   - 
+  - FaceBackground
+  - FaceUI
   - 
-  - menu
-  - BackgroundScene
   - 
   - 
   - 
@@ -41,15 +42,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: FaceOfTheCard
-    uniqueID: 368923727
-    locked: 0
   - name: BackOfTheCard
     uniqueID: 541823029
     locked: 0
-  - name: New Layer 3
-    uniqueID: 276707129
-    locked: 0
-  - name: UI
-    uniqueID: 570819227
+  - name: FaceOfTheCard
+    uniqueID: 368923727
     locked: 0

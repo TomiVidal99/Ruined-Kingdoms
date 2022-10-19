@@ -1,0 +1,27 @@
+{
+  "data": [
+    {
+      "name": "monarch",
+      "action": "ATTACK",
+      "cost": {
+        "magnitude": [
+          20
+        ],
+        "resources": [
+          "SPADES"
+        ]
+      },
+      "effect": {
+        "magnitude": [
+          14
+        ],
+        "resources": [
+          "SPADES"
+        ]
+      },
+      "target": [
+        "TOWER"
+      ]
+    }
+  ]
+}

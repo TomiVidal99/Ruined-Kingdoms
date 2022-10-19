@@ -1,0 +1,27 @@
+{
+  "data": [
+    {
+      "name": "noble",
+      "action": "ATTACK",
+      "cost": {
+        "magnitude": [
+          9
+        ],
+        "resources": [
+          "SPADES"
+        ]
+      },
+      "effect": {
+        "magnitude": [
+          8
+        ],
+        "resources": [
+          "SPADES"
+        ]
+      },
+      "target": [
+        "TOWER"
+      ]
+    }
+  ]
+}
