@@ -121,8 +121,11 @@ public class CardsController : MonoBehaviour
         int randomCard = Mathf.CeilToInt(Random.Range(0, dataList.Count - 1));
         CardData cardData = dataList[randomCard];
         string backgroundImagePath = _BACKGROUND_IMAGES_PATH + cardData.name;
-        Card card = new Card(Instantiate(_cardPrefab), cardData, backgroundImagePath);
-        card.UpdatePosition(placeholder.position);
+        GameObject cardObject = Instantiate(_cardPrefab);
+        cardObject.AddComponent<CardClickEvents>();
+        cardObject.GetComponent<CardClickEvents>().UpdateData(cardData);
+        Card card = new Card(cardObject, cardData, backgroundImagePath);
+        card.UpdatePosition(placeholder.position + new Vector3(0, 0.2f, 0));
         card.UpdateRotation(placeholder.rotation);
         return card;
     }
