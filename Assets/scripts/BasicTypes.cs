@@ -7,37 +7,38 @@ using UnityEngine;
 public class BasicTypes : MonoBehaviour
 {
 
-  public static readonly List<string> CARD_QUALITIES = new List<string>()
-  {
-    "COMMONER", "NOBLE", "MONARCH", "DIVINE"
-  };
+    public enum CARD_QUALITIES
+    {
+        COMMONER, NOBLE, MONARCH, DIVINE
+    };
 
-  public static readonly List<string> CARD_ACTIONS = new List<string>()
-  {
-    "ATTACK", "BUILD", "MAGIC"
-  };
 
-  public static readonly List<string> CARD_RESOURCES = new List<string>()
-  {
-    "SPADES", "CRYSTALS", "BRICKS"
-  };
+    public enum CARD_ACTIONS
+    {
+        ATTACK, BUILD, MAGIC
+    };
 
-  public static readonly List<string> TARGET_ENTITIES = new List<string>()
-  {
-    "TOWER", "FENCE", "RESOURCES"
-  };
+    public enum CARD_RESOURCES
+    {
+        SPADES, CRYSTALS, BRICKS
+    };
 
-  public struct CardCost
-  {
-    int resources; // index refering to the CardResources List
-    int magnitude; // how much does the card costs
-  }
+    public enum TARGET_ENTITIES
+    {
+        TOWER, FENCE, RESOURCES
+    };
 
-  public struct CardEffect
-  {
-    int action; // this is an index to the CardActions List
-    int[] magnitude; // magnitude of the effect
-    int[] target; // this is the target that will recieve the effect
-  }
+    public struct CardCost
+    {
+        int resources; // index refering to the CardResources List
+        int magnitude; // how much does the card costs
+    }
+
+    public struct CardEffect
+    {
+        int action; // this is an index to the CardActions List
+        int[] magnitude; // magnitude of the effect
+        int[] target; // this is the target that will recieve the effect
+    }
 
 }

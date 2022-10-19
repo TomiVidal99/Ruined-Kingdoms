@@ -34,14 +34,13 @@ public class CardClickEvents : MonoBehaviour
         LogData();
 
         // apply effect
-        string[] actions = BasicTypes.CARD_ACTIONS.ToArray();
-        if (_data.action == actions[0])
+        if (_data.action == BasicTypes.CARD_ACTIONS.ATTACK.ToString())
         {
           GameObject.Find("Main/Structures/Tower1").GetComponent<TowerController>().HandleAttackTower1(_data.effect.magnitude[0]);
-        } else if (_data.action == actions[1])
+        } else if (_data.action == BasicTypes.CARD_ACTIONS.BUILD.ToString())
         {
           GameObject.Find("Main/Structures/Tower1").GetComponent<TowerController>().HandleBuildTower1(_data.effect.magnitude[0]);
-        } else if (_data.action == actions[0])
+        } else if (_data.action == BasicTypes.CARD_ACTIONS.MAGIC.ToString())
         {
           Debug.Log($"This ACTION it's not implemented YET");
         }
