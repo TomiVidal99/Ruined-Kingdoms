@@ -1,0 +1,15 @@
+{
+  "attack": [
+
+    {
+      "name": "commoner",
+      "cost": 28,
+      "effect": { 
+        "magnitude": 40,
+        "resources": "SPADES"
+      },
+      "target": [ "TOWER" ]
+    }
+
+  ]
+}
