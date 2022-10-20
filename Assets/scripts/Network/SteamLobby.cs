@@ -18,7 +18,7 @@ public class SteamLobby : MonoBehaviour
     private CustomNetworkManager _manager;
 
     // GameObject
-    [SerializeField] private Button _hostButton;
+    public Button _hostButton;
     [SerializeField] private TMP_Text _ownerLobbyText;
     [SerializeField] private TMP_Text _joinedLobbyText;
 
@@ -65,7 +65,6 @@ public class SteamLobby : MonoBehaviour
     private void OnLobbyEntered(LobbyEnter_t callback)
     {
         // everyone
-        _hostButton.enabled = false;
         CurrentLobbyID = callback.m_ulSteamIDLobby;
         CSteamID steamLobbyID = new CSteamID(callback.m_ulSteamIDLobby);
 
@@ -73,11 +72,12 @@ public class SteamLobby : MonoBehaviour
         _ownerLobbyText.gameObject.SetActive(true);
         _ownerLobbyText.text = "Host: " + lobbyName; // TODO
 
+        // sets the name of the person that joined to lobby
         string clientName = SteamFriends.GetPersonaName().ToString();
         if (clientName + "'s lobby" != lobbyName)
         {
-          _joinedLobbyText.gameObject.SetActive(true);
-          _joinedLobbyText.text = "Opponent: " + clientName; // TODO
+            _joinedLobbyText.gameObject.SetActive(true);
+            _joinedLobbyText.text = "Opponent: " + clientName; // TODO
         }
 
         // client
@@ -96,7 +96,15 @@ public class SteamLobby : MonoBehaviour
     public void HandleHostLobbyButton()
     {
         // TODO: change ELobbyType.k_ELobbyTypeFriendsOnly
+      if (!GetComponent<CustomNetworkManager>().IsHostingLobby)
+      {
         SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, _manager.maxConnections);
+      } else
+      {
+        _manager.StopHost();
+        _ownerLobbyText.gameObject.SetActive(false);
+        _joinedLobbyText.gameObject.SetActive(false);
+      }
     }
 
 }
