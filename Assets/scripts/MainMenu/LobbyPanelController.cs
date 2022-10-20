@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 /// <summary>
 /// Provides methods to update the UI
@@ -9,13 +10,13 @@ public class LobbyPanelController : MonoBehaviour
 
     public struct PlayerInformation
     {
-        public PlayerInformation(TMP_Text playerName, Texture2D playerPicture)
+        public PlayerInformation(TMP_Text playerName, RawImage playerPicture)
         {
             this.name = playerName;
             this.picture = playerPicture;
         }
         public TMP_Text name;
-        public Texture2D picture;
+        public RawImage picture;
     }
 
     private TMP_Text _panelTitle;
@@ -29,12 +30,12 @@ public class LobbyPanelController : MonoBehaviour
         Transform container = gameObject.transform.Find("LobbyPanel");
         _panelTitle = container.Find("PanelTitle").GetComponent<TMP_Text>();
         HostInformation = new PlayerInformation(
-            container.Find("LobbyHostContainer").GetComponentInChildren<TMP_Text>(),
-            container.Find("LobbyHostContainer").GetComponentInChildren<Texture2D>()
+            container.Find("LobbyHost").GetComponentInChildren<TMP_Text>(),
+            container.Find("LobbyHost").GetComponentInChildren<RawImage>()
             );
         HostInformation = new PlayerInformation(
-            container.Find("LobbyOpponentContainer").GetComponentInChildren<TMP_Text>(),
-            container.Find("LobbyOpponentContainer").GetComponentInChildren<Texture2D>()
+            container.Find("LobbyOpponent").GetComponentInChildren<TMP_Text>(),
+            container.Find("LobbyOpponent").GetComponentInChildren<RawImage>()
             );
     }
 

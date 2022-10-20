@@ -910,9 +910,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 318601890}
+  - component: {fileID: 318601891}
   m_Layer: 5
   m_Name: LobbyPanelContainer
-  m_TagString: Untagged
+  m_TagString: LobbyPanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -938,6 +939,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 630, y: 380}
   m_Pivot: {x: 1, y: 1}
+--- !u!114 &318601891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318601889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c344dc8284e107d40b6de4fdf71d69e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &364236305
 GameObject:
   m_ObjectHideFlags: 0
@@ -1281,7 +1294,7 @@ GameObject:
   - component: {fileID: 551767971}
   - component: {fileID: 551767970}
   m_Layer: 5
-  m_Name: LobbyPlayerContainer
+  m_Name: LobbyHost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1294,7 +1307,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 551767967}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2202,7 +2215,6 @@ GameObject:
   - component: {fileID: 1209182428}
   - component: {fileID: 1209182427}
   - component: {fileID: 1209182426}
-  - component: {fileID: 1209182425}
   m_Layer: 5
   m_Name: LobbyPanel
   m_TagString: Untagged
@@ -2233,18 +2245,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 600, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1209182425
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1209182423}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c344dc8284e107d40b6de4fdf71d69e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1209182426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2445,7 +2445,7 @@ GameObject:
   - component: {fileID: 1329156292}
   - component: {fileID: 1329156291}
   m_Layer: 5
-  m_Name: LobbyPlayerContainer (1)
+  m_Name: LobbyOpponent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

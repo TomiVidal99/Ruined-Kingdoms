@@ -5,10 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - cardtest1
-  - LobbyUITitle
-  - LobbyUI
-  - LobbyOwner
   - HostLobbyButton
+  - LobbyPanel
   layers:
   - Default
   - TransparentFX
