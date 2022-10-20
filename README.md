@@ -8,6 +8,8 @@ Cards game made with unity.
 
 ## TODO
 - [ ] Need to make a buffer card on top of the deck.
+- [ ] Add control with arrows.
+- [ ] Add control with JUST mouse.
 
 ## Contributors
 [@TomiVidal99](https://github.com/TomiVidal99)
