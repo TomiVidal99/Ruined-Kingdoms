@@ -50,26 +50,24 @@ public class LobbyPanelController : MonoBehaviour
 
     /// <summary>
     /// Updates the information of the host.
-    /// TODO: actually update the profile picture
     /// </summary>
     /// <param name="name">Player's name</param>
     /// <param name="image">Profile picture of the player</param>
     public void UpdateHostInformation(string name, Texture2D image)
     {
       HostInformation.name.text = name;
-      // HostInformation.picture.LoadImage
+      OpponentInformation.picture.texture = image;
     }
 
     /// <summary>
     /// Updates the information of the opponent.
-    /// TODO: actually update the profile picture
     /// </summary>
     /// <param name="name">Player's name</param>
     /// <param name="image">Profile picture of the player</param>
     public void UpdateOpponentInformation(string name, Texture2D image)
     {
       OpponentInformation.name.text = name;
-      // OpponentInformation.picture.LoadImage
+      OpponentInformation.picture.texture = image;
     }
 
 }
