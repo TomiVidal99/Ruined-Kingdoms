@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using Steamworks;
@@ -15,13 +13,13 @@ public class SteamLobby : MonoBehaviour
     private protected Callback<LobbyEnter_t> LobbyEntered;
 
     // Variables
-    public ulong CurrentLobbyID;
+    public ulong CurrentLobbyID = 480;
     private const string HOST_ADDRESS_KEY = "HostAddress";
     private CustomNetworkManager _manager;
 
     // GameObject
-    public Button HostButton;
-    public TMP_Text LobbyNameText;
+    [SerializeField] private Button _hostButton;
+    [SerializeField] private TMP_Text _ownerLobbyText;
 
 
     private void Start()
@@ -66,11 +64,11 @@ public class SteamLobby : MonoBehaviour
     private void OnLobbyEntered(LobbyEnter_t callback)
     {
       // everyone
-      HostButton.enabled = false;
+      _hostButton.enabled = false;
       CurrentLobbyID = callback.m_ulSteamIDLobby;
-      LobbyNameText.gameObject.SetActive(true);
+      _ownerLobbyText.gameObject.SetActive(true);
       CSteamID steamLobbyID = new CSteamID(callback.m_ulSteamIDLobby);
-      LobbyNameText.text = SteamMatchmaking.GetLobbyData(steamLobbyID, "name");
+      _ownerLobbyText.text = "Host: " + SteamMatchmaking.GetLobbyData(steamLobbyID, "name"); // TODO get the host from the language provider
 
       // client
       if (NetworkServer.active) { return; }
