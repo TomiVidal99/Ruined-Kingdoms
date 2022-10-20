@@ -20,15 +20,15 @@ public class SteamLobby : MonoBehaviour
     // GameObject
     [SerializeField] private Button _hostButton;
     [SerializeField] private TMP_Text _ownerLobbyText;
-
+    [SerializeField] private TMP_Text _joinedLobbyText;
 
     private void Start()
     {
-      if (!SteamManager.Initialized) { return; }
-      _manager = GetComponent<CustomNetworkManager>();
-      LobbyCreated = Callback<LobbyCreated_t>.Create(OnLobbyCreated);
-      JoinRequest = Callback<GameLobbyJoinRequested_t>.Create(OnJoinRequest);
-      LobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
+        if (!SteamManager.Initialized) { return; }
+        _manager = GetComponent<CustomNetworkManager>();
+        LobbyCreated = Callback<LobbyCreated_t>.Create(OnLobbyCreated);
+        JoinRequest = Callback<GameLobbyJoinRequested_t>.Create(OnJoinRequest);
+        LobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
     }
 
     private void OnLobbyCreated(LobbyCreated_t callback)
@@ -60,21 +60,31 @@ public class SteamLobby : MonoBehaviour
 
     /// <summary>
     /// Gets called everytime joins the lobby, even the host itself
+    /// TODO: change texts with language provider ones
     /// </summary>
     private void OnLobbyEntered(LobbyEnter_t callback)
     {
-      // everyone
-      _hostButton.enabled = false;
-      CurrentLobbyID = callback.m_ulSteamIDLobby;
-      _ownerLobbyText.gameObject.SetActive(true);
-      CSteamID steamLobbyID = new CSteamID(callback.m_ulSteamIDLobby);
-      _ownerLobbyText.text = "Host: " + SteamMatchmaking.GetLobbyData(steamLobbyID, "name"); // TODO get the host from the language provider
+        // everyone
+        _hostButton.enabled = false;
+        CurrentLobbyID = callback.m_ulSteamIDLobby;
+        CSteamID steamLobbyID = new CSteamID(callback.m_ulSteamIDLobby);
 
-      // client
-      if (NetworkServer.active) { return; }
-      _manager.networkAddress = SteamMatchmaking.GetLobbyData(steamLobbyID, HOST_ADDRESS_KEY);
+        string lobbyName = SteamMatchmaking.GetLobbyData(steamLobbyID, "name");
+        _ownerLobbyText.gameObject.SetActive(true);
+        _ownerLobbyText.text = "Host: " + lobbyName; // TODO
 
-      _manager.StartClient();
+        string clientName = SteamFriends.GetPersonaName().ToString();
+        if (clientName + "'s lobby" != lobbyName)
+        {
+          _joinedLobbyText.gameObject.SetActive(true);
+          _joinedLobbyText.text = "Opponent: " + clientName; // TODO
+        }
+
+        // client
+        if (NetworkServer.active) { return; }
+        _manager.networkAddress = SteamMatchmaking.GetLobbyData(steamLobbyID, HOST_ADDRESS_KEY);
+
+        _manager.StartClient();
 
     }
 
@@ -85,8 +95,8 @@ public class SteamLobby : MonoBehaviour
     /// </summary>
     public void HandleHostLobbyButton()
     {
-      // TODO: change ELobbyType.k_ELobbyTypeFriendsOnly
-      SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, _manager.maxConnections);
+        // TODO: change ELobbyType.k_ELobbyTypeFriendsOnly
+        SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, _manager.maxConnections);
     }
 
 }
