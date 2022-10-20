@@ -2077,6 +2077,7 @@ MonoBehaviour:
   autoCreatePlayer: 0
   playerSpawnMethod: 0
   spawnPrefabs: []
+  IsHostingLobby: 0
 --- !u!4 &1263351590
 Transform:
   m_ObjectHideFlags: 0
