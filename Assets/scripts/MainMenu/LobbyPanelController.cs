@@ -8,6 +8,9 @@ using UnityEngine.UI;
 public class LobbyPanelController : MonoBehaviour
 {
 
+    /// <summary>
+    /// Describes a player listed in the lobby panel
+    /// </summary>
     public struct PlayerInformation
     {
         public PlayerInformation(Transform container)

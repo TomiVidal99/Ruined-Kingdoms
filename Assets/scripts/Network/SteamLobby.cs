@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class SteamLobby : MonoBehaviour
 {
 
+    public SteamLobby Instance;
+
     // Callbacks
     private protected Callback<LobbyCreated_t> LobbyCreated;
     private protected Callback<GameLobbyJoinRequested_t> JoinRequest;
@@ -21,6 +23,11 @@ public class SteamLobby : MonoBehaviour
     public Button _hostButton;
     [SerializeField] private TMP_Text _ownerLobbyText;
     [SerializeField] private TMP_Text _joinedLobbyText;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -96,15 +103,16 @@ public class SteamLobby : MonoBehaviour
     public void HandleHostLobbyButton()
     {
         // TODO: change ELobbyType.k_ELobbyTypeFriendsOnly
-      if (!GetComponent<CustomNetworkManager>().IsHostingLobby)
-      {
-        SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, _manager.maxConnections);
-      } else
-      {
-        _manager.StopHost();
-        _ownerLobbyText.gameObject.SetActive(false);
-        _joinedLobbyText.gameObject.SetActive(false);
-      }
+        if (!GetComponent<CustomNetworkManager>().IsHostingLobby)
+        {
+            SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, _manager.maxConnections);
+        }
+        else
+        {
+            _manager.StopHost();
+            _ownerLobbyText.gameObject.SetActive(false);
+            _joinedLobbyText.gameObject.SetActive(false);
+        }
     }
 
 }
