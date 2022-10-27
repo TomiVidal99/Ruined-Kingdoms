@@ -36,4 +36,13 @@ public class ButtonsCallbacks : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Enables or disables the play buttons
+    /// </summary>
+    public void UpdateCanPlay(bool canPlay)
+    {
+        _buttons[0].enabled = canPlay;
+        _buttons[1].enabled = canPlay;
+    }
+
 }

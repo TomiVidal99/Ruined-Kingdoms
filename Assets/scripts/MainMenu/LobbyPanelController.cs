@@ -41,12 +41,20 @@ public class LobbyPanelController : MonoBehaviour
     }
 
     /// <summary>
-    /// Sets the title of the panel given a title
+    /// Sets the title depending of steam and the language
+    /// TODO: add language support
     /// </summary>
-    /// <param name="title">The title of the panel</param>
-    public void UpdateTitle(string title)
+    public void UpdateTitle(bool isSteamWorking)
     {
-        _panelTitle.text = title;
+        string withSteam = "Lobby information";
+        string withoutSteam= "Start Steam to play";
+        if (isSteamWorking)
+        {
+          _panelTitle.text = withSteam;
+        } else 
+        {
+          _panelTitle.text = withoutSteam;
+        }
     }
 
     /// <summary>
@@ -75,6 +83,14 @@ public class LobbyPanelController : MonoBehaviour
         OpponentInformation.picture.texture = image;
         OpponentInformation.isActive = isActive;
         OpponentInformation.gameObject.gameObject.SetActive(isActive);
+    }
+
+    /// <summary>
+    /// Updates the information on the UI given a PlayerInformation
+    /// </summary>
+    private void UpdatePlayerInformation(PlayerInformation playerInformation)
+    {
+
     }
 
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// Set of utity methods to help with network
 /// </summary>
-public class NetworkUtils
+public class NetworkUtils : MonoBehaviour
 {
     /// <summary>
     /// Transform a steam image to a texture

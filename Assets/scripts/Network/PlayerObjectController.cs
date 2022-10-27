@@ -1,7 +1,6 @@
 using Mirror;
-using UnityEngine;
 
-public class PlayerObjectController : MonoBehaviour
+public class PlayerObjectController : NetworkBehaviour
 {
     // player data
     [SyncVar] public int ConnectionID;
