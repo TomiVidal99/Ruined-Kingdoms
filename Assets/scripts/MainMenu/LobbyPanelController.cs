@@ -41,20 +41,13 @@ public class LobbyPanelController : MonoBehaviour
     }
 
     /// <summary>
-    /// Sets the title depending of steam and the language
+    /// Sets the title depending of the language
     /// TODO: add language support
     /// </summary>
     public void UpdateTitle(bool isSteamWorking)
     {
-        string withSteam = "Lobby information";
-        string withoutSteam= "Start Steam to play";
-        if (isSteamWorking)
-        {
-          _panelTitle.text = withSteam;
-        } else 
-        {
-          _panelTitle.text = withoutSteam;
-        }
+        string title = "Lobby information";
+        _panelTitle.text = title;
     }
 
     /// <summary>

@@ -30,34 +30,11 @@ public class SteamLobby : MonoBehaviour
 
     private void Start()
     {
-        HandleSteamManager();
+        if (!SteamManager.Initialized) {return;}
         _manager = GetComponent<CustomNetworkManager>();
         LobbyCreated = Callback<LobbyCreated_t>.Create(OnLobbyCreated);
         JoinRequest = Callback<GameLobbyJoinRequested_t>.Create(OnJoinRequest);
         LobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
-    }
-
-    private void Update()
-    {
-      if (SteamManager.Initialized != _hasManagerInitialized)
-      {
-        HandleSteamManager();
-        _hasManagerInitialized = SteamManager.Initialized;
-      }
-    }
-
-    /// <summary>
-    /// Updates the state of buttons and text based on the
-    /// state of the Steam manager
-    /// </summary>
-    private void HandleSteamManager()
-    {
-        if (!SteamManager.Initialized) 
-        {
-          GameObject.FindWithTag("LobbyPanel").GetComponent<LobbyPanelController>().UpdateTitle(false);
-          GameObject.FindWithTag("Buttons").GetComponent<ButtonsCallbacks>().UpdateCanPlay(false);
-          return;
-        } 
     }
 
     private void OnLobbyCreated(LobbyCreated_t callback)
