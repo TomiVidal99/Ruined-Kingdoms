@@ -5,6 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - cardtest1
+  - HostLobbyButton
+  - LobbyPanel
+  - Buttons
+  - AlertMessage
+  - Menu
+  - MainMenu
+  - NetworkManager
   layers:
   - Default
   - TransparentFX

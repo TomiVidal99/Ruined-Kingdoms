@@ -7,6 +7,11 @@ using UnityEngine;
 public class BasicTypes : MonoBehaviour
 {
 
+    public enum SCENES
+    {
+      MainMenu, Game
+    };
+
     public enum CARD_QUALITIES
     {
         COMMONER, NOBLE, MONARCH, DIVINE
