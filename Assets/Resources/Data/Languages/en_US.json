@@ -1,0 +1,21 @@
+{
+  "Lang": "en_US",
+  "Menu": [
+    {
+      "key": "JoinGameButton",
+      "value": "Join Game"
+    },
+    {
+      "key": "CreateLobbyButton",
+      "value": "Create Lobby"
+    },
+    {
+      "key": "SettingsButton",
+      "value": "Settings"
+    },
+    {
+      "key": "QuitGameButton",
+      "value": "Quit"
+    }
+  ]
+}
