@@ -76,7 +76,7 @@ public class SteamLobby : MonoBehaviour
         SteamMatchmaking.SetLobbyData(steamLobbyID, HOST_ADDRESS_KEY, SteamUser.GetSteamID().ToString());
 
         // set the name of the lobby
-        string lobbyName = SteamFriends.GetPersonaName().ToString() + "'s lobby";
+        string lobbyName = SteamFriends.GetPersonaName().ToString();
         SteamMatchmaking.SetLobbyData(steamLobbyID, "name", lobbyName);
     }
 
@@ -89,7 +89,6 @@ public class SteamLobby : MonoBehaviour
 
     /// <summary>
     /// Gets called everytime joins the lobby, even the host itself
-    /// TODO: change texts with language provider ones
     /// TODO: get the profile pricture
     /// </summary>
     private void OnLobbyEntered(LobbyEnter_t callback)
@@ -104,12 +103,9 @@ public class SteamLobby : MonoBehaviour
         var profilePicture = Texture2D.whiteTexture;
         _lobbyPanel.UpdateHostInformation(lobbyName, profilePicture, true);
 
-        // _ownerLobbyText.gameObject.SetActive(true);
-        // _ownerLobbyText.text = "Host: " + lobbyName; // TODO
-
         // sets the name of the person that joined to lobby
         string clientName = SteamFriends.GetPersonaName().ToString();
-        if (clientName + "'s lobby" != lobbyName)
+        if (clientName != lobbyName)
         {
             // TODO: get profile picture
             _lobbyPanel.UpdateOpponentInformation(clientName, profilePicture, true);
@@ -125,7 +121,6 @@ public class SteamLobby : MonoBehaviour
 
     /// <summary>
     /// Handles the click of the host lobby button
-    /// TODO: make a selector for the user to choose weather the lobby it's
     /// friends only or some other type
     /// </summary>
     public void HandleHostLobbyButton()

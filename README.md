@@ -7,8 +7,7 @@ Cards game made with unity.
 - [Unity Documentation](https://docs.unity.com/)
 
 ## TODO
-- [ ] Fix profile clearing when stopping the host or the lobby session.
-- [ ] Handle steam not init on startup.
+- [ ] Maybe create a language callback to update dynamically the language (right now you have to restart the game to apply changes).
 - [ ] Default profile picture if the user has none.
 - [ ] Need to make a buffer card on top of the deck.
 - [ ] Add control with arrows.
