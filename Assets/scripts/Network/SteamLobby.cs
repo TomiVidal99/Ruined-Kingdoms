@@ -51,7 +51,6 @@ public class SteamLobby : MonoBehaviour
     /// </summary>
     public void CheckSteamInitialized()
     {
-        Debug.Log($"{SteamManager.Initialized}");
         if (!SteamManager.Initialized)
         {
             bool hasInit = GameObject.FindWithTag("NetworkManager").GetComponent<SteamManager>().IntitializeSteam();
@@ -65,7 +64,7 @@ public class SteamLobby : MonoBehaviour
     {
         if (callback.m_eResult != EResult.k_EResultOK) { return; }
 
-        Debug.Log($"Lobby Created Successfully");
+        // Debug.Log($"Lobby Created Successfully");
 
         // starts hosting
         _manager.StartHost();
@@ -139,8 +138,8 @@ public class SteamLobby : MonoBehaviour
         else
         {
             _manager.StopHost();
-            _lobbyPanel.OpponentInformation.isActive = false;
-            _lobbyPanel.HostInformation.isActive = false;
+            _lobbyPanel.UpdateHostInformation("", Texture2D.whiteTexture, false);
+            _lobbyPanel.UpdateOpponentInformation("", Texture2D.whiteTexture, false);
         }
     }
 

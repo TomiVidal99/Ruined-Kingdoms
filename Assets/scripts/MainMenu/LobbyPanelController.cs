@@ -37,7 +37,7 @@ public class LobbyPanelController : MonoBehaviour
         Transform container = gameObject.transform.Find("LobbyPanel");
         _panelTitle = container.Find("PanelTitle").GetComponent<TMP_Text>();
         HostInformation = new PlayerInformation(container.Find("LobbyHost"));
-        HostInformation = new PlayerInformation(container.Find("LobbyOpponent"));
+        OpponentInformation = new PlayerInformation(container.Find("LobbyOpponent"));
     }
 
     /// <summary>
@@ -76,14 +76,6 @@ public class LobbyPanelController : MonoBehaviour
         OpponentInformation.picture.texture = image;
         OpponentInformation.isActive = isActive;
         OpponentInformation.gameObject.gameObject.SetActive(isActive);
-    }
-
-    /// <summary>
-    /// Updates the information on the UI given a PlayerInformation
-    /// </summary>
-    private void UpdatePlayerInformation(PlayerInformation playerInformation)
-    {
-
     }
 
 }
