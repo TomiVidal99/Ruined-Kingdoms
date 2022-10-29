@@ -16,12 +16,14 @@ public class LobbyPanelController : MonoBehaviour
         public PlayerInformation(Transform container)
         {
             this.gameObject = container;
-            this.name = container.GetComponentInChildren<TMP_Text>();
+            this.nameText = container.GetComponentInChildren<TMP_Text>();
             this.picture = container.GetComponentInChildren<RawImage>();
             this.isActive = false;
+            this.name = string.Empty;
         }
         public Transform gameObject;
-        public TMP_Text name;
+        public string name;
+        public TMP_Text nameText;
         public RawImage picture;
         public bool isActive;
     }
@@ -42,11 +44,9 @@ public class LobbyPanelController : MonoBehaviour
 
     /// <summary>
     /// Sets the title depending of the language
-    /// TODO: add language support
     /// </summary>
-    public void UpdateTitle(bool isSteamWorking)
+    public void UpdateTitle(string title)
     {
-        string title = "Lobby information";
         _panelTitle.text = title;
     }
 
@@ -58,7 +58,9 @@ public class LobbyPanelController : MonoBehaviour
     /// <param name="isActive">Should be visible or not</param>
     public void UpdateHostInformation(string name, Texture2D image, bool isActive)
     {
-        HostInformation.name.text = name;
+        LanguageController.MenuLanguage lang = GameObject.FindWithTag("MainMenu").GetComponent<LanguageController>().CurrentSelectedLanguage.Menu;
+        HostInformation.name = name;
+        HostInformation.nameText.text = lang.LobbyPanelHost + ": " + name;
         HostInformation.picture.texture = image;
         HostInformation.isActive = isActive;
         HostInformation.gameObject.gameObject.SetActive(isActive);
@@ -72,7 +74,9 @@ public class LobbyPanelController : MonoBehaviour
     /// <param name="isActive">Should be visible or not</param>
     public void UpdateOpponentInformation(string name, Texture2D image, bool isActive)
     {
-        OpponentInformation.name.text = name;
+        LanguageController.MenuLanguage lang = GameObject.FindWithTag("MainMenu").GetComponent<LanguageController>().CurrentSelectedLanguage.Menu;
+        OpponentInformation.name = name;
+        OpponentInformation.nameText.text = lang.LobbyPanelHost + ": " + name;
         OpponentInformation.picture.texture = image;
         OpponentInformation.isActive = isActive;
         OpponentInformation.gameObject.gameObject.SetActive(isActive);

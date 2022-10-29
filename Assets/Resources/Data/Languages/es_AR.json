@@ -1,0 +1,14 @@
+{
+  "Lang": "es_AR",
+  "Menu": {
+      "JoinGameButton": "Unirse a partida",  
+      "CreateLobbyButton": "Crear partida",
+      "SettingsButton": "Opciones",
+      "CreditsButton": "Créditos",
+      "QuitButton": "Salir",
+      "LobbyPanelTitle": "Información de la partida",
+      "LobbyPanelHost": "Anfitrión",
+      "LobbyPanelOpponent": "Oponente",
+      "NoSteamAlertMessage": "Tenés que tener abierto Steam para poder jugar."
+  }
+}
