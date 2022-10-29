@@ -129,6 +129,28 @@ public class SteamManager : MonoBehaviour {
 		s_EverInitialized = true;
 	}
 
+  /// <summary>
+  /// Starts Steam
+  /// <return>
+  /// Returns a boolean that indicates weather the initialization was correct or not.
+  /// </return>
+  /// </summary>
+  public bool IntitializeSteam()
+  {
+		bool init = SteamAPI.Init();
+    if (!init) { return false; }
+    m_bInitialized = true;
+    return true;
+  }
+
+  /// <summary>
+  /// Stops steam, this will stop showing that you're playing a game on steam
+  /// </summary>
+  public void StopSteam()
+  {
+    SteamAPI.Shutdown();
+  }
+
 	// This should only ever get called on first load and after an Assembly reload, You should never Disable the Steamworks Manager yourself.
 	protected virtual void OnEnable() {
 		if (s_instance == null) {

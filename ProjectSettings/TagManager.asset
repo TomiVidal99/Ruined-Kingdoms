@@ -8,6 +8,10 @@ TagManager:
   - HostLobbyButton
   - LobbyPanel
   - Buttons
+  - AlertMessage
+  - Menu
+  - MainMenu
+  - NetworkManager
   layers:
   - Default
   - TransparentFX

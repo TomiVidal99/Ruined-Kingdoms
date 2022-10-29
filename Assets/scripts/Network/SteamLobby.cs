@@ -17,7 +17,6 @@ public class SteamLobby : MonoBehaviour
     public ulong CurrentLobbyID = 480;
     private const string HOST_ADDRESS_KEY = "HostAddress";
     private CustomNetworkManager _manager;
-    private bool _hasManagerInitialized = true;
 
     // GameObject
     public Button _hostButton;
@@ -26,15 +25,40 @@ public class SteamLobby : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        _lobbyPanel = GameObject.FindWithTag("LobbyPanel").GetComponent<LobbyPanelController>();
     }
 
     private void Start()
     {
-        if (!SteamManager.Initialized) {return;}
+        CheckSteamInitialized();
+        InitializeBasicNetworking();
+    }
+
+    /// <summary>
+    /// Connects callbacks and initializes the manager.
+    /// </summary>
+    public void InitializeBasicNetworking()
+    {
+        if (_manager != null) { return; }
         _manager = GetComponent<CustomNetworkManager>();
         LobbyCreated = Callback<LobbyCreated_t>.Create(OnLobbyCreated);
         JoinRequest = Callback<GameLobbyJoinRequested_t>.Create(OnJoinRequest);
         LobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
+    }
+
+    /// <summary>
+    /// Checks if Steam it's opened, else displays an alert message
+    /// </summary>
+    public void CheckSteamInitialized()
+    {
+        Debug.Log($"{SteamManager.Initialized}");
+        if (!SteamManager.Initialized)
+        {
+            bool hasInit = GameObject.FindWithTag("NetworkManager").GetComponent<SteamManager>().IntitializeSteam();
+            if (hasInit) { return; }
+            GameObject.FindWithTag("MainMenu").GetComponent<MainMenuController>().DisplaySteamNotOpenedError();
+            return;
+        }
     }
 
     private void OnLobbyCreated(LobbyCreated_t callback)

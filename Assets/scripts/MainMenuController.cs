@@ -8,7 +8,6 @@ public class MainMenuController : MonoBehaviour
     {
         // TODO: this is an example of how to call the UI in the menu to set the text with the language provider.
         // GameObject.FindWithTag("LobbyPanel").GetComponent<LobbyPanelController>().UpdateTitle("laskdjasldkjasl");
-      DisplaySteamNotOpenedError();
     }
 
     // Update is called once per frame
@@ -20,14 +19,13 @@ public class MainMenuController : MonoBehaviour
     /// <summary>
     /// Displays an alert error message that indicates that the user
     /// has to open Steam before proceding
+    /// TODO: add language
     /// </summary>
     public void DisplaySteamNotOpenedError()
     {
-      // TODO:
-      // AlertController alert = GameObject.FindWithTag("Menu").GetComponentInChildren;
-      // alert.DisplayAlert(true);
-      // GameObject alert = GameObject.Find("Alert");
-      // if (alert == null) { Debug.Log($"ERROR, alert message not found"); }
-      // alert.GetComponent<AlertController>().DisplayAlert(true);
+      string message = "You must open Steam to play";
+      AlertController alert = transform.Find("Menu").transform.Find("Alert").GetComponent<AlertController>();
+      alert.DisplayAlert(true);
+      alert.UpdateMessageData(message);
     }
 }
