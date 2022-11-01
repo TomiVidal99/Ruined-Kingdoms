@@ -1,6 +1,6 @@
 {
   "Lang": "en_US",
-  "Menu": {
+  "MainMenu": {
     "JoinGameButton": "Join Game",
     "CreateLobbyButton": "Create Lobby",
     "SettingsButton": "Settings",

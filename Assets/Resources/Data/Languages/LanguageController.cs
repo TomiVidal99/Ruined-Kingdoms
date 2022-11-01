@@ -36,7 +36,7 @@ public class LanguageController : MonoBehaviour
     public class Language
     {
         public string Lang;
-        public MenuLanguage Menu;
+        public MenuLanguage MainMenu;
         public ButtonsLanguage Buttons;
     }
 
@@ -97,10 +97,10 @@ public class LanguageController : MonoBehaviour
 
     private void Awake()
     {
-        SetLanguage("Argentino");
+        SetLanguage("Argentino", true);
     }
 
-    public void SetLanguage(string language = "English")
+    public void SetLanguage(string language = "English", bool firstInit = false)
     {
         foreach (KeyValuePairJSON currentLang in _availableLanguages)
         {
@@ -108,6 +108,7 @@ public class LanguageController : MonoBehaviour
             {
                 // the language selected exists
                 LoadLanguage(currentLang.value);
+                if (!firstInit) { UpdateAllText(); }
             }
         }
     }
@@ -149,9 +150,14 @@ public class LanguageController : MonoBehaviour
     /// </summary>
     public void UpdateObjectText(TextObject obj)
     {
-        Debug.Log($"{obj.ToString()}");
-        string text = _currentSelectedLanguage.GetType().GetField("Menu").GetType().GetField(obj.name).ToString();
-        Debug.Log($"text: {text}");
+        // string text = _currentSelectedLanguage.MainMenu.GetType().GetField(obj.name).GetValue(_currentSelectedLanguage.MainMenu).ToString();
+        var parentField = _currentSelectedLanguage.GetType().GetField(obj.scene).GetValue(_currentSelectedLanguage);
+        if (parentField == null) {
+          Debug.LogError($"The text subscribed does not exist. {obj.ToString()}");
+          return;
+        }
+        string text = parentField.GetType().GetField(obj.name).GetValue(parentField).ToString();
+        obj.text.text = text;
     }
 
     /// <summary>
@@ -160,7 +166,10 @@ public class LanguageController : MonoBehaviour
     /// </summary>
     public void UpdateAllText()
     {
-        throw new NotImplementedException();
+        foreach (TextObject obj in _textObjects)
+        {
+          UpdateObjectText(obj);
+        }
     }
 
 }

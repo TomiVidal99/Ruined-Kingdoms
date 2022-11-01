@@ -1,6 +1,6 @@
 {
   "Lang": "es_AR",
-  "Menu": {
+  "MainMenu": {
     "JoinGameButton": "Unirse a partida",
     "CreateLobbyButton": "Crear partida",
     "SettingsButton": "Opciones",
