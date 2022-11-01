@@ -1,14 +1,18 @@
 {
   "Lang": "en_US",
   "Menu": {
-      "JoinGameButton": "Join Game",  
-      "CreateLobbyButton": "Create Lobby",
-      "SettingsButton": "Settings",
-      "CreditsButton": "Credits",
-      "QuitButton": "Quit",
-      "LobbyPanelTitle": "Lobby Information",
-      "LobbyPanelHost": "Host",
-      "LobbyPanelOpponent": "Opponent",
-      "NoSteamAlertMessage": "You must open Steam to play"
+    "JoinGameButton": "Join Game",
+    "CreateLobbyButton": "Create Lobby",
+    "SettingsButton": "Settings",
+    "CreditsButton": "Credits",
+    "QuitButton": "Quit",
+    "LobbyPanelTitle": "Lobby Information",
+    "LobbyPanelHost": "Host",
+    "LobbyPanelOpponent": "Opponent",
+    "NoSteamAlertMessage": "You must open Steam to play"
+  },
+  "Buttons": {
+    "Accept": "Accept",
+    "Quit": "Quit"
   }
 }

@@ -58,10 +58,11 @@ public class AlertController : MonoBehaviour
     /// <summary>
     /// Sets the text message.
     /// </summary>
-    public void UpdateMessageData(string msg)
+    public void UpdateMessageData(string msg, string btnAccept)
     {
         Transform parent = transform.GetChild(0).GetChild(0);
         parent.Find("AlertMessage").GetComponent<TMP_Text>().text = msg;
+        parent.Find("AlertAcceptButton").GetComponentInChildren<TMP_Text>().text = btnAccept;
     }
 
 }
