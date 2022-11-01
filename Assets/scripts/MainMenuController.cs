@@ -17,26 +17,43 @@ public class MainMenuController : MonoBehaviour
     /// </summary>
     public void DisplaySteamNotOpenedError()
     {
-        MenuLanguage lang = GetComponent<LanguageController>().CurrentSelectedLanguage.Menu;
-        string message = lang.NoSteamAlertMessage;
+        Language curreLang = GetComponent<LanguageController>().CurrentSelectedLanguage;
         AlertController alert = transform.Find("Menu").transform.Find("Alert").GetComponent<AlertController>();
+        string btnText = curreLang.Buttons.Accept;
+        string message = curreLang.MainMenu.NoSteamAlertMessage;
         alert.DisplayAlert(true);
-        alert.UpdateMessageData(message);
+        alert.UpdateMessageData(message, btnText);
     }
 
 
     // sets the text where it corresponds in the menu scene based on the current language
-    // TODO: find out how to make this better, cant access the properties of the lang dynamically
     private void SetupTextBasedOnLanguage()
     {
-        MenuLanguage lang = GetComponent<LanguageController>().CurrentSelectedLanguage.Menu;
+        string menu = BasicTypes.SCENES.MainMenu.ToString();
+        LanguageController langController = GetComponent<LanguageController>();
+        MenuLanguage lang = langController.CurrentSelectedLanguage.MainMenu;
+
+        // panel title
         GameObject.FindWithTag("LobbyPanel").GetComponent<LobbyPanelController>().UpdateTitle(lang.LobbyPanelTitle);
+
+        // buttons
         Transform btns = GameObject.FindWithTag("Buttons").transform;
-        btns.Find("JoinLobbyButton").GetComponentInChildren<TMP_Text>().text = lang.JoinGameButton;
-        btns.Find("CreateLobbyButton").GetComponentInChildren<TMP_Text>().text = lang.CreateLobbyButton;
-        btns.Find("SettingsButton").GetComponentInChildren<TMP_Text>().text = lang.SettingsButton;
-        btns.Find("CreditsButton").GetComponentInChildren<TMP_Text>().text = lang.CreditsButton;
-        btns.Find("QuitButton").GetComponentInChildren<TMP_Text>().text = lang.QuitButton;
+        foreach (Transform btn in btns)
+        {
+            langController.SubscribeText(btn.GetComponentInChildren<TMP_Text>(), menu, btn.name);
+        }
     }
+
+    /// TODO: this function was for testing only
+    /// <summary>
+    /// Callback for the language drop down
+    /// </summary>
+    // public void HandleChangeLanguageDropdown(int val)
+    // {
+    //   string[] values = {"Argentino", "English"};
+    //   string lang = values[val];
+    //   Debug.Log($"Setting language to: {lang}");
+    //   GetComponent<LanguageController>().SetLanguage(lang);
+    // }
 
 }

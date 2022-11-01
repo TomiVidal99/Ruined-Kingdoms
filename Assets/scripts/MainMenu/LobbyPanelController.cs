@@ -58,7 +58,7 @@ public class LobbyPanelController : MonoBehaviour
     /// <param name="isActive">Should be visible or not</param>
     public void UpdateHostInformation(string name, Texture2D image, bool isActive)
     {
-        LanguageController.MenuLanguage lang = GameObject.FindWithTag("MainMenu").GetComponent<LanguageController>().CurrentSelectedLanguage.Menu;
+        LanguageController.MenuLanguage lang = GameObject.FindWithTag("MainMenu").GetComponent<LanguageController>().CurrentSelectedLanguage.MainMenu;
         HostInformation.name = name;
         HostInformation.nameText.text = lang.LobbyPanelHost + ": " + name;
         HostInformation.picture.texture = image;
@@ -74,7 +74,7 @@ public class LobbyPanelController : MonoBehaviour
     /// <param name="isActive">Should be visible or not</param>
     public void UpdateOpponentInformation(string name, Texture2D image, bool isActive)
     {
-        LanguageController.MenuLanguage lang = GameObject.FindWithTag("MainMenu").GetComponent<LanguageController>().CurrentSelectedLanguage.Menu;
+        LanguageController.MenuLanguage lang = GameObject.FindWithTag("MainMenu").GetComponent<LanguageController>().CurrentSelectedLanguage.MainMenu;
         OpponentInformation.name = name;
         OpponentInformation.nameText.text = lang.LobbyPanelHost + ": " + name;
         OpponentInformation.picture.texture = image;
